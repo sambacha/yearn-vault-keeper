@@ -1,10 +1,10 @@
+dist: bionic
 language: python
-cache: pip
 
 matrix:
   include:
-    - python: '3.6'
-    - python: '3.7'
+    - python: '3.6.10'
+    - python: '3.7.6'
     - python: '3.8'
     # Docker dev image
     - sudo: required
@@ -17,7 +17,4 @@ matrix:
 
       script:
         - docker build --tag "$IMAGE_NAME" .
-
-install: pip install -r requirements-dev.txt
-
-script: pytest
+        
