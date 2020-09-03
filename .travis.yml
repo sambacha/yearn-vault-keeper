@@ -3,23 +3,7 @@ language: python
 sudo: true
 #cache: pip
 
-matrix:
-  include:
-    - python: '3.6'
-    - python: '3.7'
-    - python: '3.8'
-    # Docker dev image
-    - sudo: true
-      services:
-        - docker
 
-      before_install:
-        - pip3 install -r requirements.txt
-      install: []
-
-      script:
-        - docker build --tag "$IMAGE_NAME" .
-
-#install: pip3 install -r requirements.txt
+install: pip3 install -r requirements.txt
 
 #script: python3 
