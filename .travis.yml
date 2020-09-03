@@ -1,20 +1,24 @@
+# Travis-CI
 dist: bionic
 language: python
+os: linux
 
 matrix:
   include:
-    - python: '3.6.10'
-    - python: '3.7.6'
+    - python: '3.6'
+    - python: '3.7'
     - python: '3.8'
     # Docker dev image
-    - sudo: required
-      services:
-        - docker
+    - sudo: true
+  - pip install -r requirements.txt
+  - pip install codecov
 
-      before_install:
-        - pip3 install -r requirements.txt
-      install: []
+script:
+  - python -m unittest discover
+  - behave
+  - coverage erase
+  - coverage run test_webapp.py && coverage html
+  - pylint --output-format=text scripts/vault_keeper.py
 
-      script:
-        - docker build --tag "$IMAGE_NAME" .
-        
+after_success:
+  - codecov
