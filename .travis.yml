@@ -1,6 +1,7 @@
 dist: xenial
 language: python
-cache: pip
+sudo: true
+#cache: pip
 
 matrix:
   include:
@@ -8,7 +9,7 @@ matrix:
     - python: '3.7'
     - python: '3.8'
     # Docker dev image
-    - sudo: required
+    - sudo: true
       services:
         - docker
 
