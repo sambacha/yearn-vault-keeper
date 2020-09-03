@@ -12,8 +12,7 @@ matrix:
         - docker
 
       before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y -o Dpkg::Options::="--force-confold" docker-engine
+        - pip3 install -r requirements.txt
       install: []
 
       script:
