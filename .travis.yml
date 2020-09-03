@@ -1,0 +1,24 @@
+language: python
+cache: pip
+
+matrix:
+  include:
+    - python: '3.6'
+    - python: '3.7'
+    - python: '3.8'
+    # Docker dev image
+    - sudo: required
+      services:
+        - docker
+
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y -o Dpkg::Options::="--force-confold" docker-engine
+      install: []
+
+      script:
+        - docker build --tag "$IMAGE_NAME" .
+
+install: pip install -r requirements-dev.txt
+
+script: pytest
